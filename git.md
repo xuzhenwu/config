@@ -5,6 +5,7 @@
 ```
 # commonly used 
 git init <directory>
+git status
 git add --all
 git commit -am "<message>"
 git remote add <name> <url>
