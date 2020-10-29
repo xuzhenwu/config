@@ -1,7 +1,5 @@
 # GEE
 
-个人使用GEE涉及到的东西
-
 ## Setup
 
 ***command line tool*** https://developers.google.com/earth-engine/guides/command_line
@@ -59,8 +57,14 @@ ee.Initialize()
 ***gee_asset_manager_addon*** https://github.com/samapriya/gee_asset_manager_addon
 
 ```
+# install
 pip install geeadd --user
 geeadd readme
+
+# currently used 
+geeadd delete --id <assetID>
+
+
 ```
 
 ## 初定的命名规范
