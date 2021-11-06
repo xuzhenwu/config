@@ -44,9 +44,9 @@ git config --global --edit
         recentrepo = C:/Users/Administrator/source/repos/xuzhenwu
 [http]
         cookiefile = C:\\Users\\Administrator\\.gitcookies
-        proxy = http://127.0.0.1:10809
+        proxy = http://127.0.0.1:10810
 [https]
-        proxy = http://127.0.0.1:10809/
+        proxy = http://127.0.0.1:10810/
 ```
 
 

@@ -14,17 +14,10 @@ before authenticating, please ***set proxy***
 ***powershell &cmd***
 
 ```
-# in cmd
-# socks5
-set http_proxy=socks5://127.0.0.1:10808
-set https_proxy=socks5://127.0.0.1:10808
-echo %http_proxy%
-echo %https_proxy%
-
 # in powershell
 # http
-$Env:HTTP_PROXY = "http://127.0.0.1:10809"
-$Env:HTTPS_PROXY = "http://127.0.0.1:10809"
+$Env:HTTP_PROXY = "http://127.0.0.1:10810"
+$Env:HTTPS_PROXY = "http://127.0.0.1:10810"
 ```
 
 ***authenticate***
@@ -45,6 +38,7 @@ import socket
 import socks
 socks.set_default_proxy(socks.SOCKS5, "127.0.0.1", 10808)
 socket.socket = socks.socksocket
+
 # authenticate ee
 import ee
 print(ee.__version__)
