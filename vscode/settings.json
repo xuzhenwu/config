@@ -1,0 +1,18 @@
+{
+    "editor.columnSelection": false,
+    "window.zoomLevel": 2,
+    "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "editor.mouseWheelZoom": true,
+    "workbench.colorTheme": "Monokai",
+    "r.rterm.windows": "C:\\Program Files\\R\\R-4.0.2\\bin\\x64\\R.exe",
+    "python.pythonPath": "C:\\ProgramData\\Anaconda3\\python.exe",
+    "jupyter.interactiveWindowMode": "perFile",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "sync.gist": "3ad775754654417c22313ca69cb205d7",
+    "sync.autoUpload": true,
+    "workbench.editor.untitled.hint": "hidden",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
+    "python.defaultInterpreterPath": "C:\\ProgramData\\Anaconda3\\python.exe"
+}

@@ -1,0 +1,58 @@
+# Things you might want to change
+
+# options(papersize="a4")
+# options(editor="notepad")
+# options(pager="internal")
+
+# set the default help type
+# options(help_type="text")
+  options(help_type="html")
+
+# set a site library
+# .Library.site <- file.path(chartr("\\")library( "/")library( R.home()))library( "site-library")
+
+# set a CRAN mirror
+# local({r <- getOption("repos")
+#       r["CRAN"] <- "http://my.local.cran"
+#       options(repos=r)})
+
+# Give a fortune cookie)library( but only to interactive sessions
+# (This would need the fortunes package to be installed.)
+#  if (interactive()) 
+#    fortunes::fortune()
+
+.First <- function(){
+  .libPaths("C:/Users/Administrator/Documents/R/win-library/4.0")
+
+  # make CHINESE character showed correctly
+  suppressWarnings({
+    # get my package
+    #library(xu)
+    library(data.table)
+    library(dplyr)
+    library(stringr)
+    library(purrr)
+    library(magrittr)
+    #library(ggplot2)
+    #library(gridExtra)
+    #library(lubridate)
+    #library(zoo)
+    #library(raster)
+    #library(rasterVis)
+    #library(sf)
+    #library(exactextractr)
+    #library(Rcpp)
+
+    
+    #library(devtools)
+    #library(showtext)
+    #showtext_auto()
+  })
+  
+  # set languages as chinese 
+  Sys.getenv()
+  Sys.setenv(LANG = "en")
+  Sys.setlocale("LC_TIME")
+
+}
+
