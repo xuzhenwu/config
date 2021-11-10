@@ -1,7 +1,3 @@
-# Research
-
-
-
 ## EndNote 文献阅读和管理
 
 ##### 版本信息 ***EndNote X9.3.3***
