@@ -22,9 +22,11 @@
 #    fortunes::fortune()
 
 .First <- function(){
+
+  # set path of packages
   .libPaths("C:/Users/Administrator/Documents/R/win-library/4.0")
 
-  # make CHINESE character showed correctly
+  # defualt load packages
   suppressWarnings({
     # get my package
     #library(xu)
@@ -33,6 +35,8 @@
     library(stringr)
     library(purrr)
     library(magrittr)
+
+
     #library(ggplot2)
     #library(gridExtra)
     #library(lubridate)
@@ -43,13 +47,12 @@
     #library(exactextractr)
     #library(Rcpp)
 
-    
     #library(devtools)
-    #library(showtext)
+    #library(showtext) make CHINESE character showed correctly
     #showtext_auto()
   })
   
-  # set languages as chinese 
+  # set languages as English
   Sys.getenv()
   Sys.setenv(LANG = "en")
   Sys.setlocale("LC_TIME")
