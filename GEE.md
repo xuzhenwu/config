@@ -24,7 +24,7 @@ $Env:HTTPS_PROXY = "http://127.0.0.1:10810"
 
 ```
 # in powershell
-earthengine authenticate
+earthengine authenticate --auth_mode=notebook
 ```
 
 ***python***
