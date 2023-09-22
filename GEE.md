@@ -48,7 +48,11 @@ ee.Initialize()
 
 ## Extensions
 
-***gee_asset_manager_addon*** https://github.com/samapriya/gee_asset_manager_addon
+***geeadd*** 
+
+https://github.com/samapriya/gee_asset_manager_addon
+
+https://pypi.org/project/geeadd/
 
 ```
 # install
@@ -57,48 +61,33 @@ geeadd readme
 
 # currently used 
 geeadd delete --id <assetID>
-
-
 ```
 
-## 初定的命名规范
+***geeup*** 
 
-一些建议如下
+https://github.com/samapriya/geeup#geeup-tabup
 
-**1 符号和名字**
-
-文件名应有一定意义，尽可能简洁，最好不超过两个单词，并在顺序执行时添加数字前缀，最终以.js结尾
+Example - upload SILO_d8
 
 ```
-fit_model.R
-1-main_chess.R
+# 1 - create meta data 
+geeup getmeta --input "I:\projects\fire\ETau\SILO_d8" --metadata "I:\projects\fire\ETau\SILO_d8\meta.csv"
+
+# 2 - add system_time in R
+library(magrittr)
+ofn <- 'I:/projects/fire/ETau/SILO_d8/meta.csv'
+dt <- data.table::fread(ofn)
+dt[['system::time_start']] <- NULL
+dt[['system:time_start']] <- stringr::str_extract(dt$id_no, '\\d*-\\d*-\\d*') %>% 
+  paste0(' 00:00:00') %>%
+  lubridate::ymd_hms %>% as.integer()
+fwrite(dt, ofn)
+
+# 3 - upload files to GEE with system_time in each tile
+geeup upload --source "I:\projects\fire\ETau\SILO_d8" --metadata "I:\projects\fire\ETau\SILO_d8\meta.csv" --dest "projects/pml_evapotranspiration/test/fire/SEAU/SILO_d8_SEAU" --user "xuzhw5@mail2.sysu.edu.cn" --nodata -9999 --pyramids MODE
 ```
 
-变量名和函数名同理，非必要时最好不超过两个单词，以“_”分隔单词，不采用任何大写
 
-```
-rearrange_files
-trans_month_day
-```
-
-单词是否缩写以及顺序请慎重斟酌，最好以能连成句子的顺序排列为准，如果GEE API的函数示意
-
-```
-Map.addLayer
-ee.ImageCollection.filterBounds
-```
-
-调用参数化较复杂的函数请根据需求换行
-
-目前已纳入的缩写如下
-
-```
-pkg				packages
-imgcol			ImageCollection
-movmean			Moving mean
-
-
-```
 
 
 
