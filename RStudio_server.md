@@ -32,11 +32,29 @@ export R_VERSION=4.3.1
 curl -O https://cdn.rstudio.com/r/centos-7/pkgs/R-${R_VERSION}-1-1.x86_64.rpm
 sudo yum install R-${R_VERSION}-1-1.x86_64.rpm
 ```
+R in the paths
+
+```
+# remove previous paths
+sudo rm /usr/local/bin/R
+sudo rm /usr/local/bin/Rscript
+# link R to the paths
+sudo ln -s /opt/R/${R_VERSION}/bin/R /usr/local/bin/R
+sudo ln -s /opt/R/${R_VERSION}/bin/Rscript /usr/local/bin/Rscript
+```
+
+R ld-library 
+
+```
+sudo vim /opt/R/${R_VERSION}/etc/ldpaths
+# add these 
+export LD_LIBRARY_PATH=/share/users/zwxu/.conda/envs/rspatial/lib:$LD_LIBRARY_PATH
+export R_LD_LIBRARY_PATH=/share/users/zwxu/.conda/envs/rspatial/lib
+```
 
 **Install RStudio Server**
 
 ```
-
 wget https://download2.rstudio.org/server/centos7/x86_64/rstudio-server-rhel-2023.06.2-561-x86_64.rpm
 sudo yum install rstudio-server-rhel-2023.06.2-561-x86_64.rpm
 ```
@@ -84,6 +102,8 @@ conda install -c conda-forge mamba
 mamba install -c conda-forge r-raster r-terra
 mamba install -c conda-forge r-tidyverse
 mamba install -c conda-forge r-data.table
+
+mamba install -c conda-forge r-airGR r-changepoint r-exactextractr r-Evapotranspiration r-ggExtra r-lattice r-pracma r-shiny r-SPEI r-trend r-xlsx
 ```
 
 **Install packages in R** only if packages is **not available in conda**
@@ -93,6 +113,7 @@ mamba install -c conda-forge r-data.table
 .libPaths("/share/users/zwxu/.conda/envs/rspatial/lib/R/library")
 # install packages
 install.packages('PKGS')
+# such as rtop and other packages 
 ```
 
 ## Load environment in R
@@ -101,12 +122,14 @@ install.packages('PKGS')
 
 ```
 # vim the Renviron file
-sudo vim /opt/R/4.3.1/lib/R/etc/Renviron # note that this is lib, rather than bin
+# note that this is lib, rather than bin
+sudo vim /opt/R/4.3.1/lib/R/etc/Renviron 
+
 # change it as 
 R_LIBS_USER='/share/users/zwxu/.conda/envs/rspatial'
 R_LIBS_SITE='/share/users/zwxu/.conda/envs/rspatial'
 
-# this is essential for rspatial packages such as raster, rgdal, terra, sf
+# add this, which is essential for rspatial packages such as raster, rgdal, terra, sf
 PROJ_LIB='/share/users/zwxu/.conda/envs/rspatial/share/proj'
 GDAL_DATA='/share/users/zwxu/.conda/envs/rspatial/share/'
 
