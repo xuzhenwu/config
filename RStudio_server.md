@@ -20,17 +20,20 @@ https://posit.co/download/rstudio-server/
 
 **Install R**
 
-R is installed in:  **/opt/R/4.3.1/bin/R** (maybe should be migrated to the conda environment, rspatial)
+R is installed in:  **/opt/R/4.2.3/bin/R** (maybe should be migrated to the conda environment, rspatial)
 
 ```
 # CentOS 7
 sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
 sudo subscription-manager repos --enable "rhel-*-optional-rpms"
 
-export R_VERSION=4.3.1
+export R_VERSION=4.2.3
 
 curl -O https://cdn.rstudio.com/r/centos-7/pkgs/R-${R_VERSION}-1-1.x86_64.rpm
 sudo yum install R-${R_VERSION}-1-1.x86_64.rpm
+
+# sudo yum remove R-${R_VERSION}
 ```
 R in the paths
 
@@ -46,7 +49,7 @@ sudo ln -s /opt/R/${R_VERSION}/bin/Rscript /usr/local/bin/Rscript
 R ld-library 
 
 ```
-sudo vim /opt/R/${R_VERSION}/etc/ldpaths
+sudo vim /opt/R/${R_VERSION}/lib/R/etc/ldpaths
 # add these 
 export LD_LIBRARY_PATH=/share/users/zwxu/.conda/envs/rspatial/lib:$LD_LIBRARY_PATH
 export R_LD_LIBRARY_PATH=/share/users/zwxu/.conda/envs/rspatial/lib
@@ -67,13 +70,15 @@ https://zhuanlan.zhihu.com/p/509471495
 # set up r location
 sudo vim /etc/rstudio/rserver.conf
 # in vim
-rsession-which-r=/opt/R/4.3.1/bin/R
+rsession-which-r=/opt/R/4.2.3/bin/R
 rsession-ld-library-path=/share/users/zwxu/.conda/envs/rspatial/lib
 # restart rserver
 rstudio-server restart
 # kill specific apps for 8787 (if needed)
 sudo netstat -anp | grep 8787
 sudo kill -9 <pid>
+# change firewall to allow access.. 
+sudo firewall-cmd --add-port 8787/tcp
 ```
 
 ## Install packages
@@ -86,6 +91,11 @@ sudo kill -9 <pid>
 # here in /share/users/zwxu/.conda/envs/rspatial
 conda create -n rspatial
 conda activate rspatial
+# or activate by the loacl path
+conda activate /share/users/zwxu/.conda/envs/rspatial
+# if you want to install packages here, but have no access
+# we need to add you to the SharedUsers
+sudo usermod -a -G SharedUsers your_user_name
 ```
 
 **Install mamba to speed up** 
@@ -123,11 +133,11 @@ install.packages('PKGS')
 ```
 # vim the Renviron file
 # note that this is lib, rather than bin
-sudo vim /opt/R/4.3.1/lib/R/etc/Renviron 
+sudo vim /opt/R/4.2.3/lib/R/etc/Renviron 
 
 # change it as 
-R_LIBS_USER='/share/users/zwxu/.conda/envs/rspatial'
-R_LIBS_SITE='/share/users/zwxu/.conda/envs/rspatial'
+R_LIBS_USER='/share/users/zwxu/.conda/envs/rspatial/lib/R/library'
+R_LIBS_SITE='/share/users/zwxu/.conda/envs/rspatial/lib/R/library'
 
 # add this, which is essential for rspatial packages such as raster, rgdal, terra, sf
 PROJ_LIB='/share/users/zwxu/.conda/envs/rspatial/share/proj'
