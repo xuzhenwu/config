@@ -35,6 +35,9 @@
     library(stringr)
     library(purrr)
     library(magrittr)
+    library(tidyterra)
+    library(terra)
+    library(tidymodels)
 
 
     #library(ggplot2)
